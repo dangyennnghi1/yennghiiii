@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bình luận</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffc2d1;
+        }
+
+        #comment-container {
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+          background-color: #f8edeb;
+        }
+
+        #comment-section {
+            margin-top: 20px;
+            background-color: #edafb8;
+        }
+
+        #comment-form {
+            margin-top: 20px;
+        }
+
+        #comment-form div {
+            margin-bottom: 10px;
+        }
+
+        #comment-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #comment-form textarea {
+            width: 100%;
+        }
+
+        #comment-section div {
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="comment-container">
+    <h1 style="text-align:center;color:#6b9080; font-size: 36px;">Đánh giá</h1>
+
+    <div id="default-comment">
+        <div>
+            <strong>John Doe:</strong> <br>
+            <em>2024-03-30 09:00 AM</em> <br>
+            <span>Đã mua, đã sử dụng, sản phảm khá tố t hợp giá tiền.</span>
+          
+          <br> <strong>Yến Nghi:</strong> <br>
+            <em>2024-03-30 13:00 AM</em> <br> 
+            <span>Giao hàng nhanh chóng, sản phẩm như ảnh, rất hài lòng sẽ mua lại lần sau.</span>
+          
+          <br> <strong>Thanh Tình:</strong> <br>
+            <em>2024-04-02 08:00 PM</em> <br>
+            <span>Hài lòng về sản phẩm, son phù hợp với giá tiền.</span>
+          
+          <br> <strong>Diễm Quỳnh:</strong> <br>
+            <em>2024-04-04 09:00 PM</em> <br>
+            <span>Rất hài lòng với sản phẩm, đóng gói cẩn thận.</span>
+        </div>
+    </div>
+
+    <div id="comment-section">
+        <!-- Các bình luận sẽ được hiển thị ở đây -->
+    </div>.
+
+    <h2 style="color:#7f5539">Đăng Đánh giá mới</h2>
+    <form id="comment-form">
+        <div>
+            <label for="name">Tên:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="comment">Bình luận:</label>
+            <textarea id="comment" name="comment" rows="4" required></textarea>
+        </div>
+        <button type="submit">Đăng bình luận</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("comment-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Ngăn chặn form submit mặc định
+
+        var name = document.getElementById("name").value;
+        var comment = document.getElementById("comment").value;
+        var dateTime = new Date().toLocaleString(); // Lấy ngày và giờ hiện tại
+
+        // Tạo một phần tử mới cho bình luận
+        var commentElement = document.createElement("div");
+        commentElement.innerHTML = "<strong>" + name + ":</strong> " + "<br>" +
+                                    "<em>" + dateTime + "</em>" + "<br>" +
+                                    "<span>" + comment + "</span>";
+
+        // Thêm phần tử bình luận vào phần hiển thị bình luận
+        document.getElementById("comment-section").appendChild(commentElement);
+
+        // Xóa nội dung trong các trường input sau khi đã đăng bình luận
+        document.getElementById("name").value = "";
+        document.getElementById("comment").value = "";
+    });
+</script>
+
+</body>
+</html>

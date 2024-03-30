@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Current Time</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #current-time {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: white; /* Màu chữ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    animation: backgroundAnimation 10s linear infinite;
+    background: linear-gradient(to bottom, #00416a, #ffc0cb); /* Thay đổi màu xanh sang màu hồng nhạt */
+    background-size: 100% 200%;
+  }
+
+  @keyframes backgroundAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="background"></div>
+<div id="current-time"></div>
+
+<script>
+  function getCurrentTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  function updateClock() {
+    const currentTimeElement = document.getElementById('current-time');
+    currentTimeElement.textContent = getCurrentTime();
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
